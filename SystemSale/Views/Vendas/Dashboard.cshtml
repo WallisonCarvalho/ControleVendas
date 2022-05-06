@@ -1,0 +1,67 @@
+﻿@{
+
+    ViewData["Title"] = "Dashboard";
+
+    var mes = ViewBag.Mes;
+    var ano = ViewBag.Ano;
+    var qtde = ViewBag.Qtde;
+    var dias = ViewBag.Dias;
+
+
+    var diasSerializando = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(mes));
+    var qtdeSerializandoFinal = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(qtde));
+
+}
+<h1></h1>
+<div class="row g-4 mb-4">
+    <div class="col-12 col-lg-6">
+        <div class="app-card app-card-chart h-100 shadow-sm">
+            <div class="app-card-header p-3 border-0">
+                <h4 class="app-card-title"></h4>
+            </div>
+            <div class="app-card-body p-4">
+                <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script defer>
+    debugger
+        var dias = @diasSerializando;
+        var qtde = @qtdeSerializandoFinal;
+
+
+       let ctx = document.getElementById('myChart').getContext('2d');
+    let myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dias,
+            datasets: [{
+
+                data: qtde,
+
+
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: true
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

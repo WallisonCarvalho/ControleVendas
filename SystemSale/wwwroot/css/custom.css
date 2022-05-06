@@ -1,0 +1,36 @@
+﻿/*Loading Icon*/
+.modalload {
+    position: fixed;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-color: transparent;
+    filter: opacity(100);
+    opacity: 1.0;
+}
+.centerload {
+    z-index: 1000;
+    margin: 250px 150px auto;
+    padding: 10px;
+    width: 100px;
+    background-color: transparent;
+    border-radius: 10px;
+    filter: opacity(100);
+    opacity: 1;
+}
+.centerload img {
+    height: 60px;
+    width: 60px;
+}
+
+headercsstest {
+    width: 30px !important;
+}
+
+headercsstest td {
+    width: 30px !important;
+}
+headercsstest th {
+    width: 30px !important;
+}

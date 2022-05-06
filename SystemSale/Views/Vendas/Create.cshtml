@@ -1,0 +1,87 @@
+﻿@model SystemSale.Models.VendaFormViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@*<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Logo</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-area="" asp-controller="Vendas" asp-action="Create">Inserir nova Venda</a></li>
+                <li><a asp-area="" asp-action="PesquisaVenda">Pesquisar Vendas</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br />
+<h3>Nova Venda</h3>
+<br />*@
+<div class="row">
+    <div class="col-md-6">
+        <form class="form-horizontal" asp-action="Create">
+            <fieldset>
+                <div class="form-group">
+                    <label asp-for="Venda.VendedorId" class="col-lg-2 control-label"></label>
+                    <div class="col-lg-10">
+                        <select asp-for="Venda.VendedorId" asp-items="@(new SelectList(Model.Vendedores,"Id",
+                   "Name"))" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Venda.ProdutoId" class="col-lg-2 control-label"></label>
+                    <div class="col-lg-10">
+                        <select asp-for="Venda.ProdutoId" asp-items="@(new SelectList(Model.Produtos,"Id",
+                   "Nome"))" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Venda.DataVenda" class="col-lg-2 control-label"></label>
+                    <div class="col-lg-10">
+                        <input asp-for="Venda.DataVenda" class="form-control" />
+                        <span asp-validation-for="Venda.DataVenda" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Venda.ValorVenda" class="col-lg-2 control-label"></label>
+                    <div class="col-lg-10">
+                        <input asp-for="Venda.ValorVenda" class="form-control" />
+                        <span asp-validation-for="Venda.ValorVenda" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Venda.QtdeVenda" class="col-lg-2 control-label"></label>
+                    <div class="col-lg-10">
+                        <input asp-for="Venda.QtdeVenda" class="form-control" />
+                        <span asp-validation-for="Venda.QtdeVenda" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<br />
+
+<h5>
+    <a asp-area="" asp-controller="Vendas" asp-action="Index">Voltar</a>
+</h5>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

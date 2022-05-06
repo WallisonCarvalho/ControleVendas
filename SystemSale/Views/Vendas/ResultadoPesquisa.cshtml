@@ -1,0 +1,106 @@
+﻿@model IEnumerable< SystemSale.Models.Venda>
+
+@{
+    ViewData["Title"] = "Resultado Pesquisa";
+}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Logo</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                @*<li><a asp-area="" asp-controller="Vendas" asp-action="PesquisaVenda">Voltar</a></li>*@
+                <li><a asp-area="" asp-controller="Vendas" asp-action="Create">Inserir nova Venda</a></li>
+                <li><a asp-area="" asp-action="PesquisaVenda">Pesquisar Vendas</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br />
+<h3>@ViewData["Title"]</h3>
+<br />
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="minDate">Min Date</label>
+                    <input type="date" class="form-control" name="minDate" value=@ViewData["minDate"] />
+                </div>
+                <div class="form-group">
+                    <label for="maxDate">Max Date</label>
+                    <input type="date" class="form-control" name="maxDate" value=@ViewData["maxDate"] />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    </div>
+</nav>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Total Vendas = @Model.Sum(obj => obj.ValorVenda).ToString("F2")</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr class="success">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Vendedor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Produto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DataVenda)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QtdeVenda)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ValorVenda)
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Vendedor.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Produto.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataVenda)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QtdeVenda)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ValorVenda)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<h5>
+    <a asp-area="" asp-controller="Vendas" asp-action="PesquisaVenda">Voltar</a>
+</h5>
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

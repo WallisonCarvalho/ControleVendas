@@ -1,0 +1,69 @@
+﻿@model SystemSale.Models.VendaFormViewModel
+
+@{
+    ViewData["Title"] = "Pesquisar";
+}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Logo</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-area="" asp-controller="Vendas" asp-action="Create">Inserir nova Venda</a></li>
+                <li><a asp-area="" asp-action="PesquisaVenda">Pesquisar Vendas</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br />
+<h3>@ViewData["Title"]</h3>
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal" asp-action="">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="Venda.VendedorId" class="col-lg-2 control-label">Vendedor</label>
+                        <div class="col-lg-10">
+                            <select asp-for="Venda.VendedorId" asp-items="@(new SelectList(Model.Vendedores,"Id",
+                   "Name"))" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="minDate" class="col-lg-2 control-label">Data Mín</label>
+                        <div class="col-lg-10">
+                            <input type="date" name="minDate" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="maxDate" class="col-lg-2 control-label">Data Max</label>
+                        <div class="col-lg-10">
+                            <input type="date" name="maxDate" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button asp-action="ResultadoPesquisa" class="btn btn-primary">Pesquisar</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+    <a asp-area="" asp-controller="Vendas" asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

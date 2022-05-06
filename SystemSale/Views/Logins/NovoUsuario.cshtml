@@ -1,0 +1,64 @@
+﻿@model SystemSale.Models.Login
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container col-11 col-md-9" id="form-container">
+    <div class="row gx-5">
+        <div class="col-md-6">
+            <h2>Realize o seu cadastro</h2>
+            <form asp-action="NovoUsuario">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Digite o seu nome">
+                    <label for="Nome" class="form-label">Digite o seu nome</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="SegundoNome" name="SegundoNome" placeholder="Digite o seu sobrenome">
+                    <label for="SegundoNome" class="form-label">Digite o seu sobrenome</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="Email" name="Email" placeholder="Digite o seu e-mail">
+                    <label for="Email" class="form-label">Digite o seu e-mail</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="Senha" name="Senha" placeholder="Digite sua senha">
+                    <label for="Senha" class="form-label">Digite sua senha</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="confirmaSenha" name="confirmaSenha" placeholder="Confirme sua senha">
+                    <label for="confirmaSenha" class="form-label">Confirme sua senha</label>
+                    @if (TempData["mensagemErro"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            As senhas são diferentes!
+                        </div>
+                    }
+                    <br />
+                </div>
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-primary" value="Cadastrar">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-6">
+                <div class="row aling-items-center">
+                    <div class="col-12">
+                        <img src="~/img/sign_in.svg" alt="Tela de registro" class="img-fluid">
+                    </div>
+                    <div class="col-12" id="link-container">
+                        <a asp-area="" class="nav-link active"
+                           asp-controller="Logins" asp-action="TelaDeLogin">Eu já tenho uma conta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

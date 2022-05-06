@@ -1,0 +1,62 @@
+﻿@model SystemSale.Models.Login
+
+@{
+    ViewData["Title"] = "Index";
+}
+@*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SystemSale</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">*@
+@* <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Logins" asp-action="TelaDeLogin"></a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Logins" asp-action="NovoUsuario"></a>
+    </li>*@
+            </ul>
+@*<form class="d-flex">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Logins" asp-action="TelaDeLogin">Login</a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Logins" asp-action="NovoUsuario">Cadastro</a>
+    </form>
+    </div>
+    </div>
+    </nav>*@
+<div class="container col-11 col-md-9" id="form-container">
+    <form asp-controller="Logins" asp-action="TelaInicial">
+        <div class="row align-items-center gx-5">
+            <div class="col-md-6 order-md-2">
+                <h2>Faça o login para continuar</h2>
+                <form>
+                    <div class="form-floating mb-3">
+                        <input type="senha" class="form-control" id="email" name="email" placeholder="Digite o seu e-mail">
+                        <label for="email" class="form-label">Digite o seu e-mail</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="senha" class="form-control" id="senha" name="senha"
+                               placeholder="Ditete a sua senha">
+                        <label for="senha" class="form-label">Ditete a sua senha</label>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Entrar">
+                </form>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <div class="col-12">
+                    <img src="~/img/hello.svg" alt="entrar no sistema" class="img-fluid">
+                </div>
+                <div class="col-12" id="link-container">
+                    <a asp-area="" class="nav-link active" asp-controller="Logins" asp-action="NovoUsuario">Ainda não tenho cadastro</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
